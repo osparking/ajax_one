@@ -8,7 +8,6 @@ public class HomeController {
   @GetMapping("/")
   public String showHome() {
     return "change_content.html";
-//    return "note.xml";
   }
 
 }
