@@ -2,25 +2,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>예술가 이름</title>
+<title>반응 헤더</title>
 </head>
 <body>
-	<h1>The XMLHttpRequest Object</h1>
-	<p id="demo"></p>
+	<h2>The XMLHttpRequest Object</h2>
+	<p>The getAllResponseHeaders() function returns all the header
+		information of a resource, like length, server-type, content-type,
+		last-modified, etc:</p>
+
+	<pre id="demo"></pre>
 
 	<script>
-		var xhttp = new XMLHttpRequest();
+		const xhttp = new XMLHttpRequest();
 		xhttp.onload = function() {
-			const xmlDom = xhttp.responseXML;
-			const arts = xmlDom.getElementsByTagName("ARTIST");
-			let text = "";
-			for (let i = 0; i < arts.length; i++) {
-				text += arts[i].childNodes[0].nodeValue + "<br>";
-			}
-
-			document.getElementById("demo").innerHTML = text;
+			document.getElementById("demo").innerHTML = 
+				this.getAllResponseHeaders();
 		}
-		xhttp.open("GET", "cd_catalog.xml");
+		xhttp.open("GET", "ajax_info.txt");
 		xhttp.send();
 	</script>
 </body>
