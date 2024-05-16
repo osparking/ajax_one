@@ -9,7 +9,6 @@
 	<div id="demo">
 	</div>
 	<button type="button" onclick="loadDoc()">인사해야지?</button>
-	<button type="button" onclick="alert('네 비동기적입니다')">비동기적?</button>
 
 	<script>
 		function loadDoc() {
@@ -20,8 +19,10 @@
 					document.getElementById("demo").innerHTML = this.responseText;
 				}
 			});
-			xhttp.open("GET", "greet_customer?lname=박&fname=종범", false);
-			xhttp.send();
+			xhttp.open("POST", "greet_customer");
+			xhttp.setRequestHeader("Content-type", 
+					"application/x-www-form-urlencoded");
+			xhttp.send("lname=박&fname=종범");
 		}
 	</script>
 </body>

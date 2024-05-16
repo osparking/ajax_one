@@ -1,9 +1,8 @@
 package space.bum.sboa2githb.controller;
 
-import java.time.Duration;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -14,11 +13,10 @@ public class HomeController {
     return "change_content.html";
   }
 
-  @GetMapping("/greet_customer")
+  @PostMapping("/greet_customer")
   @ResponseBody
   public String showHome(@RequestParam String lname,
       @RequestParam String fname) throws InterruptedException {
-    Thread.sleep(Duration.ofSeconds(5));
     return "<h3>Hello '" + lname + ", " + fname + "'</h3>";
   }
 }
