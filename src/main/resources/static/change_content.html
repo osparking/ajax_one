@@ -2,21 +2,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>반응 헤더</title>
+<title>최종수정일</title>
 </head>
 <body>
 	<h2>The XMLHttpRequest Object</h2>
-	<p>The getAllResponseHeaders() function returns all the header
-		information of a resource, like length, server-type, content-type,
+	<p>The getResponseHeader() function returns 특정 header
+		information of a response, like length, server-type, content-type,
 		last-modified, etc:</p>
 
-	<pre id="demo"></pre>
+	<p>최종 수정일: <span id="demo"></span></p>
 
 	<script>
 		const xhttp = new XMLHttpRequest();
 		xhttp.onload = function() {
 			document.getElementById("demo").innerHTML = 
-				this.getAllResponseHeaders();
+				this.getResponseHeader("last-modified");
 		}
 		xhttp.open("GET", "ajax_info.txt");
 		xhttp.send();
