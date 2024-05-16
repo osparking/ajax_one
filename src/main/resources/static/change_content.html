@@ -2,28 +2,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>문장 변경</title>
+<title>예술가 이름</title>
 </head>
 <body>
 	<h1>The XMLHttpRequest Object</h1>
-	<div id="demo">
-	</div>
-	<button type="button" onclick="loadDoc()">인사해야지?</button>
+	<p id="demo"></p>
 
 	<script>
-		function loadDoc() {
-			var xhttp = new XMLHttpRequest();
- 			xhttp.addEventListener("readystatechange",  function() {
- 				console.log(this.readyState);
-				if (this.readyState == 4 && this.status == 200) {
-					document.getElementById("demo").innerHTML = this.responseText;
-				}
-			});
-			xhttp.open("POST", "greet_customer");
-			xhttp.setRequestHeader("Content-type", 
-					"application/x-www-form-urlencoded");
-			xhttp.send("lname=박&fname=종범");
+		var xhttp = new XMLHttpRequest();
+		xhttp.onload = function() {
+			const xmlDom = xhttp.responseXML;
+			const arts = xmlDom.getElementsByTagName("ARTIST");
+			let text = "";
+			for (let i = 0; i < arts.length; i++) {
+				text += arts[i].childNodes[0].nodeValue + "<br>";
+			}
+
+			document.getElementById("demo").innerHTML = text;
 		}
+		xhttp.open("GET", "cd_catalog.xml");
+		xhttp.send();
 	</script>
 </body>
 </html>
