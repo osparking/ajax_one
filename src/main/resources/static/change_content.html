@@ -5,29 +5,21 @@
 <title>문장 변경</title>
 </head>
 <body>
+	<h1>The XMLHttpRequest Object</h1>
 	<div id="demo">
-		<h1>The XMLHttpRequest Object</h1>
-		<button type="button" onclick="loadDoc()">Change Content</button>
 	</div>
+	<button type="button" onclick="loadDoc()">인사해야지?</button>
 
 	<script>
 		function loadDoc() {
 			var xhttp = new XMLHttpRequest();
-/* 			xhttp.onload = function() {
-				document.getElementById("demo").innerHTML = this.responseText;
-			} */
  			xhttp.addEventListener("readystatechange",  function() {
  				console.log(this.readyState);
 				if (this.readyState == 4 && this.status == 200) {
 					document.getElementById("demo").innerHTML = this.responseText;
 				}
 			});
-/* 			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					document.getElementById("demo").innerHTML = this.responseText;
-				}
-			}; */
-			xhttp.open("GET", "ajax_info.txt", true);
+			xhttp.open("GET", "greet_customer?lname=박&fname=종범");
 			xhttp.send();
 		}
 	</script>
