@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>가수-제목 읽는 버튼</title>
+</head>
+<body>
+<h3>The XMLHttpRequest Object</h3>
+<button type="button" onclick="load가수_제목()">가수-제목 목록보기</button>
+<table id="가제목록"></table>
+
+<script>
+function load가수_제목() {
+	const xhref = new XMLHttpRequest();
+	xhref.onload = function() {
+		myFunction(this);		
+	}
+	xhref.open("GET", "cd_catalog.xml");
+	xhref.send();
+	
+	console.log("clicked");
+}
+function myFunction(xml) {
+  const xmlDoc = xml.responseXML;
+  const x = xmlDoc.getElementsByTagName("CD");
+  let table="<tr><th>Artist</th><th>Title</th></tr>";
+  for (let i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("가제목록").innerHTML = table;
+}
+
+</script>
+</body>
+</html>
