@@ -11,4 +11,4 @@ CREATE CACHED TABLE "PUBLIC"."customer"(
     "country" CHARACTER VARYING(100)
 );
 
-CREATE INDEX unq_idx_CustID ON "PUBLIC"."customer"("CustomerID");
+CREATE UNIQUE INDEX unq_idx_CustID ON "PUBLIC"."customer"("CustomerID");
