@@ -5,31 +5,32 @@
 <title>AJAX 디비</title>
 <style>
 th, td {
-  padding: 5px;
+	padding: 5px;
 }
 
 table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
+	border: 1px solid black;
+	border-collapse: collapse;
 }
 
 table {
-  width: 100%;
+	width: 100%;
 }
 
 th {
-  text-align: left;
-  width: 35%;
+	text-align: left;
+	width: 35%;
 }
 
 td {
-  width: 65%;
+	width: 65%;
 }
 </style>
 </head>
 <body>
 	<div>
-		<select name="customers" id="customers" onchange="showCust(this.value)">
+		<select name="customers" id="customers"
+			onchange="showCust(this.value)">
 			<option value="">고객 선택:</option>
 			<option value="ahnjb">안종범</option>
 			<option value="smhd">삼성/현대</option>
@@ -38,16 +39,21 @@ td {
 	</div>
 	<br>
 	<div id="custDetails">고객 정보가 여기 표출될 것...</div>
-	
+
 	<script>
-	 function showCust(cust) {
-		 console.log(cust);
-		 if (cust == "") {
-			 document.getElementById("custDetails").innerHTML = ""
-			 return;
-		 }
-	 }	
-	 
+		function showCust(customerID) {
+			console.log(customerID);
+			if (customerID == "") {
+				document.getElementById("custDetails").innerHTML = ""
+				return;
+			}
+			const xhttp = new XMLHttpRequest();
+			xhttp.onload = function() {
+				document.getElementById("custDetails").innerHTML = this.responseText;
+			}
+			xhttp.open("GET", "getcustomer?customerID=" + customerID);
+			xhttp.send();
+		}
 	</script>
 </body>
 </html>
