@@ -16,7 +16,7 @@ import lombok.ToString;
 public class Customer {
   @Id
   private int seqno;
-  private String CustomerID;
+  private String customerID;
   private String companyname;
   private String contactname;
   private String address;
