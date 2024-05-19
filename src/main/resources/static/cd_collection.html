@@ -33,6 +33,21 @@ th, td {
 			xhtml.open("GET", "cd_catalog.xml");
 			xhtml.send();
 		}
+
+		function showCDlist(cdlist) {
+			let table = "<table><tr><th>가수</th><th>제목</th></tr>"
+			for (i = 0; i < cdlist.length; i++) {
+				table += "<tr><td>"
+						+ cdlist[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue
+						+ "</td><td>"
+						+ cdlist[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue
+						+ "</td></tr>"
+			}
+
+			table += "</table>";
+			let cd_table = document.getElementById("cd_table");
+			cd_table.innerHTML = table
+		}
 	</script>
 </body>
 </html>
