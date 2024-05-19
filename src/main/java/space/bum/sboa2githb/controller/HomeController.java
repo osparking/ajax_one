@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
   @GetMapping("/")
-  public String showHome() {
-    return "ajax_database.html";
+  public String cdTableButton() {
+    return "cd_collection.html";
   }
 
   @PostMapping("/greet_customer")
