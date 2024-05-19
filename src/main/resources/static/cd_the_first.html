@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+table {
+	margin-top: 20px;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px;
+}
+</style>
+<title>CD-1번</title>
+</head>
+<body>
+  <button type="button" onclick="show_cd_one()">1번 CD 보기</button>
+  <div id="showCD"></div>
+  <script>
+  function show_cd_one() {
+  	document.getElementById("showCD").innerHTML = "1번 CD 내용 표시";
+  }
+  </script>
+</body>
+</html>
