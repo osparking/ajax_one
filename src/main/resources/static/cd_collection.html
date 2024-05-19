@@ -18,6 +18,21 @@ th, td {
 </style>
 </head>
 <body>
-
+	<button type="button" onclick="show_cd_table()">CD 목록 표시</button>
+	<div id="cd_table"></div>
+	<script>
+		function show_cd_table() {
+			const xhtml = new XMLHttpRequest();
+			xhtml.onreadystatechange = function() {
+				if (xhtml.readyState == 4 && this.status == 200) {
+					const cdCatalog = xhtml.responseXML;
+					const cdlist = cdCatalog.getElementsByTagName("CD");
+					showCDlist(cdlist);
+				}
+			}
+			xhtml.open("GET", "cd_catalog.xml");
+			xhtml.send();
+		}
+	</script>
 </body>
 </html>
