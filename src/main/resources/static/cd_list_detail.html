@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CD 목록-상세정보</title>
+</head>
+<body>
+	<script>
+	  let cd_list;
+		window.onload = function() {
+			const xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4 && this.status == 200) {
+				  cd_list = xhttp.responseXML.getElementsByTagName("CD");
+				  displayCDtable(cd_list);
+				}
+			}
+			xhttp.open("GET", "cd_catalog.xml");
+			xhttp.send();
+		}
+		
+		function displayCDtable(cdList) {			
+			alert("cd 개수: " + cd_list.length);
+		}
+	</script>
+</body>
+</html>
+

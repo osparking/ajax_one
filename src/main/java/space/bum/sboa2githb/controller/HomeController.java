@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
   @GetMapping("/")
   public String cdTableButton() {
-    return "cd_navigation.html";
+    return "cd_list_detail.html";
   }
 
   @PostMapping("/greet_customer")
