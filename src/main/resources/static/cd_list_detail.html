@@ -2,25 +2,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+table {
+	margin-top: 20px;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px;
+}
+</style>
 <title>CD 목록-상세정보</title>
 </head>
 <body>
+  <div>
+    <p>CD 행(에술가 혹은 제목 열)을 클릭하면 앨범 상세정보가 표시됨</p>
+  </div>
+	<div id="cdList"></div>
 	<script>
-	  let cd_list;
+		let cd_list;
 		window.onload = function() {
 			const xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (xhttp.readyState == 4 && this.status == 200) {
-				  cd_list = xhttp.responseXML.getElementsByTagName("CD");
-				  displayCDtable(cd_list);
+					cd_list = xhttp.responseXML.getElementsByTagName("CD");
+					displayCDtable(cd_list);
 				}
 			}
 			xhttp.open("GET", "cd_catalog.xml");
 			xhttp.send();
 		}
-		
-		function displayCDtable(cdList) {			
-			alert("cd 개수: " + cd_list.length);
+
+		function displayCDtable() {
+			let tHtml = "<table><tr><th>예술가</th><th>제목</th></tr>";
+			for (i=0; i < cd_list.length; i++) {
+				tHtml += "<tr><td>" + 
+				cd_list[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue
+				+ "</td><td>" +
+				cd_list[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue
+				+ "</td></tr>"
+				
+			}
+			tHtml += "</table>";
+			document.getElementById("cdList").innerHTML = tHtml;
 		}
 	</script>
 </body>
