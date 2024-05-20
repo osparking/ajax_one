@@ -25,14 +25,23 @@ th, td {
 		function show_cd_one() {
 			const xhtml = new XMLHttpRequest();
 			xhtml.onload = function() {
-				alert("loaded");
-				let tableElt = "<table><tr><th>속성</th><th>값</th></tr>";
-				tableElt += "</table>";
-				document.getElementById("showCD").innerHTML = tableElt;
-
+				const cdCatalog = xhtml.responseXML;
+				const firstCD = cdCatalog.getElementsByTagName("CD")[0];
+				displayCD(firstCD);
 			}
 			xhtml.open("GET", "cd_catalog.xml");
 			xhtml.send();
+		}
+
+		function displayCD(cd) {
+			let tableElt = "<table><tr><th>속성</th><th>값</th></tr>";
+			for (i = 1; i < 5; i += 2) {
+				tableElt += "<tr><td>" + cd.childNodes[i].nodeName + "</td>";
+				tableElt += "<td>" + cd.childNodes[i].childNodes[0].nodeValue
+						+ "</td></tr>";
+			}
+			tableElt += "</table>";
+			document.getElementById("showCD").innerHTML = tableElt;
 		}
 	</script>
 </body>
