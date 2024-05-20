@@ -15,6 +15,14 @@ table, th, td {
 th, td {
 	padding: 5px;
 }
+
+.tabDiv {
+  width:auto;
+	max-height: 450px;
+	border-style: double;
+	overflow-y: scroll;
+	display: inline-block;
+}
 </style>
 <title>CD 목록-상세정보</title>
 </head>
@@ -23,7 +31,9 @@ th, td {
 		<p>CD 행(에술가 혹은 제목 열)을 클릭하면 앨범 상세정보가 표시됨</p>
 	</div>
 	<div id="showDetail"></div>
-	<div id="cdList"></div>
+	<div class="tabDiv">
+		<div id="cdList"></div>
+	</div>
 	<script>
 		let cd_list;
 		window.onload = function() {
