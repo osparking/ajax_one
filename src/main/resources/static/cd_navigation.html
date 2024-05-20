@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CD항해</title>
+<style>
+.right {
+	text-align: right;
+}
+</style>
+</head>
+<body>
+	<div id="showCD"></div>
+
+	<script>
+    let i = 0;
+	  let cdList;
+	  
+		window.onload = () => {
+      const xhtml = new XMLHttpRequest();
+      xhtml.onload = function() {
+        cdList = xhtml.responseXML.getElementsByTagName("CD");
+        setShowCD(i);
+      }
+      xhtml.open("GET", "cd_catalog.xml");
+      xhtml.send();
+		}
+
+		function setShowCD(idx) {
+			const cd = cdList[idx];			
+			let tableElt = "<table>";
+			for (j = 1; j < 5; j += 2) {
+				tableElt += "<tr><td class='right'>" + cd.childNodes[j].nodeName + " : </td>";
+				tableElt += "<td>" + cd.childNodes[j].childNodes[0].nodeValue
+						+ "</td></tr>";
+			}
+			tableElt += "<tr><td class='right'>YEAR : </td><td>"
+					+ cd.getElementsByTagName("YEAR")[0].childNodes[0].nodeValue
+					+ "</td></tr>";
+			tableElt += "</table>";
+			document.getElementById("showCD").innerHTML = tableElt;
+		}
+	</script>
+</body>
+</html>
