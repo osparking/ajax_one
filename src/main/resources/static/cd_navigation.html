@@ -12,6 +12,8 @@
 <body>
 	<div id="showCD"></div>
 
+	<button onclick="showPrev()">&lt;&lt;</button>
+	<button onclick="showNext()">>></button>
 	<script>
     let i = 0;
 	  let cdList;
@@ -24,6 +26,20 @@
       }
       xhtml.open("GET", "cd_catalog.xml");
       xhtml.send();
+		}
+		
+		function showNext() {
+			if (i < cdList.length - 1) {
+				i += 1;
+			}
+			setShowCD(i);
+		}
+		
+		function showPrev() {
+			if (i > 0) {
+			  i -= 1;
+			  setShowCD(i);
+			}
 		}
 
 		function setShowCD(idx) {
