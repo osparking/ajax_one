@@ -31,18 +31,22 @@
 		function showNext() {
 			if (i < cdList.length - 1) {
 				i += 1;
+			  setShowCD(i);
+			} else {
+				alert("마지막 CD 입니다.")
 			}
-			setShowCD(i);
 		}
 		
 		function showPrev() {
 			if (i > 0) {
 			  i -= 1;
 			  setShowCD(i);
+			} else {
+				alert("맨 첫 CD 입니다.")
 			}
 		}
 
-		function setShowCD(idx) {
+		function setShowCD(idx) {			
 			const cd = cdList[idx];			
 			let tableElt = "<table>";
 			for (j = 1; j < 5; j += 2) {
@@ -56,6 +60,6 @@
 			tableElt += "</table>";
 			document.getElementById("showCD").innerHTML = tableElt;
 		}
-	</script>
+	</script>	
 </body>
 </html>
