@@ -19,9 +19,10 @@ th, td {
 <title>CD 목록-상세정보</title>
 </head>
 <body>
-  <div>
-    <p>CD 행(에술가 혹은 제목 열)을 클릭하면 앨범 상세정보가 표시됨</p>
-  </div>
+	<div>
+		<p>CD 행(에술가 혹은 제목 열)을 클릭하면 앨범 상세정보가 표시됨</p>
+	</div>
+	<div id="showDetail"></div>
 	<div id="cdList"></div>
 	<script>
 		let cd_list;
@@ -39,16 +40,34 @@ th, td {
 
 		function displayCDtable() {
 			let tHtml = "<table><tr><th>예술가</th><th>제목</th></tr>";
-			for (i=0; i < cd_list.length; i++) {
-				tHtml += "<tr><td>" + 
-				cd_list[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue
-				+ "</td><td>" +
-				cd_list[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue
-				+ "</td></tr>"
-				
+			for (i = 0; i < cd_list.length; i++) {
+				tHtml += "<tr onclick='displayCD("
+						+ i
+						+ ")'><td>"
+						+ cd_list[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue
+						+ "</td><td>"
+						+ cd_list[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue
+						+ "</td></tr>"
+
 			}
 			tHtml += "</table>";
 			document.getElementById("cdList").innerHTML = tHtml;
+		}
+
+		function displayCD(idx) {
+			const cd = cd_list[idx];
+			let tableElt = "<table>";
+			for (j = 1; j < 5; j += 2) {
+				tableElt += "<tr><td class='right'>" + cd.childNodes[j].nodeName
+						+ " : </td>";
+				tableElt += "<td>" + cd.childNodes[j].childNodes[0].nodeValue
+						+ "</td></tr>";
+			}
+			tableElt += "<tr><td class='right'>YEAR : </td><td>"
+					+ cd.getElementsByTagName("YEAR")[0].childNodes[0].nodeValue
+					+ "</td></tr>";
+			tableElt += "</table>";
+			document.getElementById("showDetail").innerHTML = tableElt;
 		}
 	</script>
 </body>
